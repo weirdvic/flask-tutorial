@@ -70,8 +70,7 @@ class User(UserMixin, db.Model):
     def followed_posts(self):
         '''Найти все посты из подписок пользователя и его собственные'''
         followed = Post.query.join(
-            followers, (followers.c.followed_id == Post.user_id
-                and followers.c.follower_id == self.id))
+            followers, (followers.c.followed_id == Post.user_id)).filter(followers.c.follower_id == self.id)
         own = Post.query.filter_by(user_id=self.id)
         return followed.union(own).order_by(Post.timestamp.desc())
     
@@ -83,7 +82,7 @@ class User(UserMixin, db.Model):
         '''
         return jwt.encode(
             {'reset_password': self.id, 'exp': time() + expires_in},
-            app.config['SECRET_KEY'], algorithm='HS256').decode('utf-8')
+            app.config['SECRET_KEY'], algorithm='HS256')
 
     @staticmethod
     def verify_reset_password_token(token:str):

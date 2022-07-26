@@ -83,6 +83,17 @@ class UserModelCase(unittest.TestCase):
         self.assertEqual(f2, [p2, p3])
         self.assertEqual(f3, [p3, p4])
         self.assertEqual(f4, [p4])
+    
+    def test_jwt(self):
+        u1 = User(username='alice', email='alice@example.com')
+        db.session.add(u1)
+        db.session.commit()
+        token=u1.get_reset_password_token()
+        u2 = User.verify_reset_password_token(token)
+        self.assertEqual(u1,u2)
+
+
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
