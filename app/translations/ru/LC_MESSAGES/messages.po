@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-26 16:58+0300\n"
+"POT-Creation-Date: 2022-07-26 17:39+0300\n"
 "PO-Revision-Date: 2022-07-26 16:58+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -18,6 +18,10 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.10.3\n"
+
+#: app/__init__.py:23
+msgid "Please log in to access this page."
+msgstr "Войдите для просмотра этой страницы."
 
 #: app/email.py:31
 msgid "[Microblog] Reset Your Password"
@@ -35,7 +39,7 @@ msgstr "Пароль"
 msgid "Remember Me"
 msgstr "Запомнить меня"
 
-#: app/forms.py:11 app/templates/login.html:5
+#: app/forms.py:11 app/routes.py:110 app/templates/login.html:5
 msgid "Sign In"
 msgstr "Войти"
 
@@ -51,7 +55,7 @@ msgstr "Восстановить пароль"
 msgid "Repeat Password"
 msgstr "Повторить пароль"
 
-#: app/forms.py:33 app/templates/register.html:5
+#: app/forms.py:33 app/routes.py:131 app/templates/register.html:5
 msgid "Register"
 msgstr "Зарегистрироваться"
 
@@ -65,51 +69,67 @@ msgstr "Отправить"
 
 #: app/forms.py:63
 msgid "Say something"
-msgstr "Скажи что-то"
+msgstr "Скажи что-нибудь"
 
-#: app/routes.py:47
+#: app/routes.py:49
 msgid "Your post is now live!"
 msgstr "Ваш пост отправлен!"
 
-#: app/routes.py:101
+#: app/routes.py:63
+msgid "Home Page"
+msgstr "Главная"
+
+#: app/routes.py:86 app/templates/base.html:26
+msgid "Explore"
+msgstr "Обзор"
+
+#: app/routes.py:103
 msgid "Invalid username or password"
 msgstr "Неверное имя пользователя или пароль"
 
-#: app/routes.py:127
+#: app/routes.py:129
 msgid "Congratulations, you are now a registered user!"
 msgstr "Поздравляем, вы зарегистрированный пользователь!"
 
-#: app/routes.py:141
+#: app/routes.py:143
 msgid "Check your email for the instructions to reset your password"
 msgstr "Проверьте почту для получения инструкции по сбросу пароля"
 
-#: app/routes.py:158
+#: app/routes.py:146 app/templates/request_password_reset.html:5
+msgid "Reset Password"
+msgstr "Восстановить пароль"
+
+#: app/routes.py:160
 msgid "Your password has been reset."
 msgstr "Ваш пароль был обновлён."
 
-#: app/routes.py:196
+#: app/routes.py:198
 msgid "Your changes have been saved."
 msgstr "Ваши изменения были сохранены."
 
-#: app/routes.py:210 app/routes.py:226
+#: app/routes.py:203 app/templates/edit_profile.html:5
+msgid "Edit Profile"
+msgstr "Обновить профиль"
+
+#: app/routes.py:212 app/routes.py:228
 #, python-format
 msgid "User %(username)s not found."
 msgstr "Пользователь %(username)s не найден."
 
-#: app/routes.py:213
+#: app/routes.py:215
 msgid "You cannot follow yourself!"
 msgstr "Нельзя подписаться на себя!"
 
-#: app/routes.py:217
+#: app/routes.py:219
 #, python-format
 msgid "You are following %(username)s!"
 msgstr "Вы подписаны на %(username)s!"
 
-#: app/routes.py:229
+#: app/routes.py:231
 msgid "You cannot unfollow yourself!"
 msgstr "Нельзя отписаться от себя!"
 
-#: app/routes.py:233
+#: app/routes.py:235
 #, python-format
 msgid "You are not following %(username)s."
 msgstr "Вы не подписаны на %(username)s."
@@ -143,10 +163,6 @@ msgstr "Добро пожаловать в Microblog"
 msgid "Home"
 msgstr "Домой"
 
-#: app/templates/base.html:26
-msgid "Explore"
-msgstr "Обзор"
-
 #: app/templates/base.html:30
 msgid "Login"
 msgstr "Войти"
@@ -159,9 +175,18 @@ msgstr "Профиль"
 msgid "Logout"
 msgstr "Выйти"
 
-#: app/templates/edit_profile.html:5
-msgid "Edit Profile"
-msgstr "Обновить профиль"
+#: app/templates/index.html:5
+#, python-format
+msgid "Hi, %(username)s!"
+msgstr "Крювет, %(username)s!"
+
+#: app/templates/index.html:17 app/templates/user.html:46
+msgid "Newer posts"
+msgstr "Новые посты"
+
+#: app/templates/index.html:22 app/templates/user.html:51
+msgid "Older posts"
+msgstr "Старые посты"
 
 #: app/templates/login.html:12
 msgid "New User?"
@@ -179,10 +204,6 @@ msgstr "Забыли пароль?"
 msgid "Click to Reset It"
 msgstr "Восстановление пароля"
 
-#: app/templates/request_password_reset.html:5
-msgid "Reset Password"
-msgstr "Восстановить пароль"
-
 #: app/templates/reset_password.html:5
 msgid "Reset Your Password"
 msgstr "Восстановить пароль"
@@ -193,7 +214,7 @@ msgstr "Пользователь"
 
 #: app/templates/user.html:14
 msgid "Last seen on"
-msgstr "Был"
+msgstr "Видели"
 
 #: app/templates/user.html:17
 msgid "followers"
@@ -201,7 +222,7 @@ msgstr "подписчиков"
 
 #: app/templates/user.html:17
 msgid "following"
-msgstr "подписан на"
+msgstr "подписок"
 
 #: app/templates/user.html:20
 msgid "Edit your profile"
@@ -215,10 +236,3 @@ msgstr "Подписаться"
 msgid "Unfollow"
 msgstr "Отписаться"
 
-#: app/templates/user.html:46
-msgid "Newer posts"
-msgstr "Новые посты"
-
-#: app/templates/user.html:51
-msgid "Older posts"
-msgstr "Старые посты"

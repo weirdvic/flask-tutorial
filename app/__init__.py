@@ -3,7 +3,7 @@ import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
 from config import Config
 from flask import Flask, request
-from flask_babel import Babel
+from flask_babel import Babel, lazy_gettext as _l
 from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
 from flask_mail import Mail
@@ -20,6 +20,7 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 login = LoginManager(app)
 login.login_view = 'login'
+login.login_message = _l('Please log in to access this page.')
 mail = Mail(app)
 moment = Moment(app)
 
