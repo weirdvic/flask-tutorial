@@ -1,16 +1,26 @@
 from datetime import datetime, timedelta
 import unittest
-from app import app, db
+from app import create_app, db
 from app.models import User, Post
+from config import Config
+
+
+class TestConfig(Config):
+    TESTING = True
+    SQLALCHEMY_DATABASE_URI = 'sqlite://'
+
 
 class UserModelCase(unittest.TestCase):
     def setUp(self):
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://'
+        self.app = create_app(TestConfig)
+        self.app_context = self.app.app_context()
+        self.app_context.push()
         db.create_all()
 
     def tearDown(self):
         db.session.remove()
         db.drop_all()
+        self.app_context.pop()
 
     def test_password_hashing(self):
         u = User(username='alice')
@@ -21,8 +31,8 @@ class UserModelCase(unittest.TestCase):
     def test_avatar(self):
         u = User(username='alice', email='alice@example.com')
         self.assertEqual(u.avatar(128), ('https://www.gravatar.com/avatar/'
-                                        'c160f8cc69a4f0bf2b0362752353d060'
-                                        '?d=identicon&s=128'))
+                                         'c160f8cc69a4f0bf2b0362752353d060'
+                                         '?d=identicon&s=128'))
 
     def test_follow(self):
         u1 = User(username='alice', email='alice@example.com')
@@ -83,16 +93,14 @@ class UserModelCase(unittest.TestCase):
         self.assertEqual(f2, [p2, p3])
         self.assertEqual(f3, [p3, p4])
         self.assertEqual(f4, [p4])
-    
+
     def test_jwt(self):
         u1 = User(username='alice', email='alice@example.com')
         db.session.add(u1)
         db.session.commit()
-        token=u1.get_reset_password_token()
+        token = u1.get_reset_password_token()
         u2 = User.verify_reset_password_token(token)
-        self.assertEqual(u1,u2)
-
-
+        self.assertEqual(u1, u2)
 
 
 if __name__ == '__main__':

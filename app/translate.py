@@ -1,6 +1,6 @@
 import requests
 from flask_babel import _
-from app import app
+from flask import current_app
 
 def translate(text:str, to_language:str) -> str:
     '''Перевести фрагмент текста '''
@@ -9,14 +9,14 @@ def translate(text:str, to_language:str) -> str:
     if len(to_language) > 3:
         return _('Error: language code too long (max length 3)')
 
-    if 'YANDEX_FOLDER_ID' not in app.config or \
-        'YANDEX_TRANSLATE_KEY' not in app.config or \
-        not app.config['YANDEX_FOLDER_ID'] or \
-        not app.config['YANDEX_TRANSLATE_KEY']:
+    if 'YANDEX_FOLDER_ID' not in current_app.config or \
+        'YANDEX_TRANSLATE_KEY' not in current_app.config or \
+        not current_app.config['YANDEX_FOLDER_ID'] or \
+        not current_app.config['YANDEX_TRANSLATE_KEY']:
         return _('Error: the translation service is not configured.')
-    folder_id = app.config.get('YANDEX_FOLDER_ID')
-    api_key = app.config.get('YANDEX_TRANSLATE_KEY')
-    
+    folder_id = current_app.config.get('YANDEX_FOLDER_ID')
+    api_key = current_app.config.get('YANDEX_TRANSLATE_KEY')
+
     body = {
         "targetLanguageCode": to_language,
         "texts": [text],
