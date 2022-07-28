@@ -14,3 +14,5 @@ class Config(object):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
         f"sqlite:///{os.path.join(basedir, 'app.db')}"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    YANDEX_FOLDER_ID = os.environ.get('YANDEX_FOLDER_ID')
+    YANDEX_TRANSLATE_KEY = os.environ.get('YANDEX_TRANSLATE_KEY')
