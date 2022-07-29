@@ -1,9 +1,10 @@
 from flask import render_template, current_app
 from flask_babel import _
 from app.email import send_email
+from app.models import User
 
 
-def send_password_reset_email(user):
+def send_password_reset_email(user:User):
     token = user.get_reset_password_token()
     send_email(_('[Microblog] Reset Your Password'),
                sender=current_app.config['ADMINS'][0],

@@ -9,7 +9,7 @@ from app import db, login
 
 
 @login.user_loader
-def load_user(id):
+def load_user(id:int):
     return User.query.get(int(id))
 
 
@@ -39,7 +39,7 @@ class User(UserMixin, db.Model):
         backref=db.backref('followers', lazy='dynamic'), lazy='dynamic'
     )
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f'<User {self.username}>'
 
     def set_password(self, password):
@@ -50,7 +50,7 @@ class User(UserMixin, db.Model):
         '''Проверить соответствие хеша паролю'''
         return check_password_hash(self.password_hash, password)
 
-    def avatar(self, size: int = 32):
+    def avatar(self, size:int=32):
         '''Генерация ссылки на Gravatar пользователя
         :param int size: размер аватара в пикселях'''
         digest = md5(self.email.lower().encode('utf-8')).hexdigest()
@@ -78,7 +78,7 @@ class User(UserMixin, db.Model):
         own = Post.query.filter_by(user_id=self.id)
         return followed.union(own).order_by(Post.timestamp.desc())
 
-    def get_reset_password_token(self, expires_in: int = 600):
+    def get_reset_password_token(self, expires_in:int=600):
         '''
         Сгенерировать JWT для восстановления пароля пользователя.
         Стандартный срок действия токена — 10 минут
@@ -89,7 +89,7 @@ class User(UserMixin, db.Model):
             current_app.config['SECRET_KEY'], algorithm='HS256')
 
     @staticmethod
-    def verify_reset_password_token(token: str):
+    def verify_reset_password_token(token:str):
         '''
         Метод принимает строку с JWT в качестве параметра
         и возвращает пользователя из базы, либо None если такого
@@ -112,5 +112,5 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     language = db.Column(db.String(5))
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f'<Post {self.body}>'
