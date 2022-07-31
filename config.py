@@ -19,3 +19,4 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     YANDEX_FOLDER_ID = os.environ.get('YANDEX_FOLDER_ID')
     YANDEX_TRANSLATE_KEY = os.environ.get('YANDEX_TRANSLATE_KEY')
+    ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL')
