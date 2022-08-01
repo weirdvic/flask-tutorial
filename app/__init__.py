@@ -34,7 +34,8 @@ def create_app(config_class=Config):
     bootstrap.init_app(app)
     moment.init_app(app)
     babel.init_app(app)
-    app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']]) \
+    app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']],
+    basic_auth=(app.config['ELASTICSEARCH_USER'],app.config['ELASTICSEARCH_PASS'])) \
         if app.config['ELASTICSEARCH_URL'] else None
     from app.errors import bp as errors_bp
     app.register_blueprint(errors_bp)
