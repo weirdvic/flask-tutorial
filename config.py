@@ -22,3 +22,5 @@ class Config(object):
     YANDEX_FOLDER_ID = os.environ.get('YANDEX_FOLDER_ID')
     YANDEX_TRANSLATE_KEY = os.environ.get('YANDEX_TRANSLATE_KEY')
     ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL')
+    ELASTICSEARCH_USER = os.environ.get('ELASTICSEARCH_USER')
+    ELASTICSEARCH_PASS = os.environ.get('ELASTICSEARCH_PASS')
