@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-12 21:08+0300\n"
+"POT-Creation-Date: 2022-08-13 11:50+0300\n"
 "PO-Revision-Date: 2022-07-28 17:29+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -117,7 +117,7 @@ msgstr "Отправить"
 msgid "Say something"
 msgstr "Скажи что-нибудь"
 
-#: app/main/forms.py:36 app/main/routes.py:198
+#: app/main/forms.py:36 app/main/routes.py:203
 msgid "Search"
 msgstr "Поиск"
 
@@ -125,54 +125,54 @@ msgstr "Поиск"
 msgid "Message"
 msgstr "Сообщение"
 
-#: app/main/routes.py:54
+#: app/main/routes.py:59
 msgid "Your post is now live!"
 msgstr "Ваш пост отправлен!"
 
-#: app/main/routes.py:68 app/templates/base.html:25
+#: app/main/routes.py:73 app/templates/base.html:25
 msgid "Home"
 msgstr "Главная"
 
-#: app/main/routes.py:91 app/templates/base.html:26
+#: app/main/routes.py:96 app/templates/base.html:26
 msgid "Explore"
 msgstr "Обзор"
 
-#: app/main/routes.py:131
+#: app/main/routes.py:136
 msgid "Your changes have been saved."
 msgstr "Изменения сохранены."
 
-#: app/main/routes.py:136 app/templates/edit_profile.html:5
+#: app/main/routes.py:141 app/templates/edit_profile.html:5
 msgid "Edit Profile"
 msgstr "Обновить профиль"
 
-#: app/main/routes.py:145 app/main/routes.py:161
+#: app/main/routes.py:150 app/main/routes.py:166
 #, python-format
 msgid "User %(username)s not found."
 msgstr "Пользователь %(username)s не найден."
 
-#: app/main/routes.py:148
+#: app/main/routes.py:153
 msgid "You cannot follow yourself!"
 msgstr "Нельзя подписаться на себя!"
 
-#: app/main/routes.py:152
+#: app/main/routes.py:157
 #, python-format
 msgid "You are following %(username)s!"
 msgstr "Вы подписаны на %(username)s!"
 
-#: app/main/routes.py:164
+#: app/main/routes.py:169
 msgid "You cannot unfollow yourself!"
 msgstr "Нельзя отписаться от себя!"
 
-#: app/main/routes.py:168
+#: app/main/routes.py:173
 #, python-format
 msgid "You are not following %(username)s."
 msgstr "Вы отписаны от %(username)s."
 
-#: app/main/routes.py:212
+#: app/main/routes.py:218
 msgid "Your message has been sent."
 msgstr "Сообщение отправлено!"
 
-#: app/main/routes.py:214
+#: app/main/routes.py:220
 msgid "Send Message"
 msgstr "Отправить"
 
@@ -201,11 +201,11 @@ msgstr "Профиль"
 msgid "Messages"
 msgstr "Сообщения"
 
-#: app/templates/base.html:34
+#: app/templates/base.html:41
 msgid "Logout"
 msgstr "Выйти"
 
-#: app/templates/base.html:79
+#: app/templates/base.html:86
 msgid "Error: Could not contact server."
 msgstr "Ошибка: сервер недоступен."
 
@@ -280,14 +280,14 @@ msgid "Send private message"
 msgstr "Отправить личное сообщение"
 
 #: app/templates/user_popup.html:16
-#, fuzzy, python-format
+#, python-format
 msgid "%(count)d followers"
-msgstr "подписчиков"
+msgstr "подписчиков: %(count)d"
 
 #: app/templates/user_popup.html:17
-#, fuzzy, python-format
+#, python-format
 msgid "%(count)d following"
-msgstr "подписок"
+msgstr "подписок: %(count)d"
 
 #: app/templates/auth/login.html:12
 msgid "New User?"
